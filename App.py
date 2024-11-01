@@ -1,6 +1,6 @@
 import streamlit as st
 from Pages import Home, Project1, Project2, Project3
-from streamlit_navigation_bar import navbar
+from streamlit_navigation_bar import st_navbar as navbar
 
 st.set_page_config(initial_sidebar_state="collapsed")
 pages = ['Home', 'Project1', 'Project2', 'Project3']
