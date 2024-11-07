@@ -17,21 +17,21 @@ class Project1:
             return data
         return None
 
-upload = st.file_uploader("choose csv file")
-if upload is not None:
-    df = load_data(upload)
-    st.dataframe(df, height=400, width=600)
-else:
-    st.warning("Please upload a CSV file")
+    upload = st.file_uploader("choose csv file")
+    if upload is not None:
+        df = load_data(upload)
+        st.dataframe(df, height=400, width=600)
+    else:
+        st.warning("Please upload a CSV file")
 
-st.markdown(
-    """
-    <style>
-    h1 {
-        color: green;
-        font-size:18px;
-        text-align:center;
-    }
-    </style>
-    """, unsafe_allow_html=True
-)
+    st.markdown(
+        """
+        <style>
+        h1 {
+            color: green;
+            font-size:18px;
+            text-align:center;
+        }
+        </style>
+        """, unsafe_allow_html=True
+    )
