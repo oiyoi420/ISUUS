@@ -11,7 +11,7 @@ st.set_page_config(initial_sidebar_state="collapsed", page_icon=image)
 pages = ['Home', 'Project1', 'Project2', 'Project3']
 styles = {
   "nav": {
-    "background-color": "royalblue",
+    "background-color": "black",
     "display": "flex",
     "justify-content": "center"
   },
