@@ -6,6 +6,7 @@ class Home:
     def __init__(self):
         pass
 
+
     def load_lottie_url(self, url):
         """Load Lottie animation from a URL."""
         response = requests.get(url)
