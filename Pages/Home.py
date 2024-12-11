@@ -15,12 +15,6 @@ class Home:
         return response.json()
 
     def app(self):
-        st.set_page_config(
-            page_title="Creative One Page App",
-            page_icon="🌟",
-            layout="centered",
-            initial_sidebar_state="collapsed",
-        )
 
         # Apply custom styles for dark theme
 
