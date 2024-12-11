@@ -1,11 +1,11 @@
 import streamlit as st
 from streamlit_lottie import st_lottie
 import requests
+from datetime import datetime
 
 class Home:
     def __init__(self):
         pass
-
 
     def load_lottie_url(self, url):
         """Load Lottie animation from a URL."""
@@ -15,85 +15,85 @@ class Home:
         return response.json()
 
     def app(self):
-        # Load animations
-        about_animation = self.load_lottie_url("https://assets1.lottiefiles.com/packages/lf20_khzniaya.json")
-        skills_animation = self.load_lottie_url("https://lottie.host/11b0507d-a3e3-42f2-b132-d99987108b8e/kD6JveEHks.json")
-        fun_animation = self.load_lottie_url("https://lottie.host/366d5fd0-6c1c-4ed8-82bd-65ea3e32f5a2/2ZC5H08LKH.json")
+        st.set_page_config(
+            page_title="Creative One Page App",
+            page_icon="🌟",
+            layout="centered",
+            initial_sidebar_state="collapsed",
+        )
 
-        # Title and Introduction
-        st.title("Welcome to My Digital Portfolio 🌟")
-        st.write("""
-        Hi there! I'm thrilled to have you here. This space showcases my professional journey, personal interests, 
-        and the projects that inspire me. Feel free to explore, engage, and connect!
+        # Apply custom styles for dark theme
+        st.markdown(
+            """
+            <style>
+            body {
+                background-color: black;
+                color: #ffffff;
+            }
+            .stButton>button {
+                background-color: #6c63ff;
+                color: white;
+                border-radius: 12px;
+                padding: 10px 20px;
+                border: none;
+            }
+            .stButton>button:hover {
+                background-color: #4e4ac7;
+            }
+            .stTextInput>div>div>input {
+                background-color: #2e2e42;
+                color: white;
+                border: 1px solid #6c63ff;
+                border-radius: 10px;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Header
+        st.markdown(
+            """
+            # 🌟 Welcome to the Dark Themed App!
+            A single-page app designed with creativity and simplicity in mind.
+            """
+        )
+
+        # Display the current date and time
+        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        st.markdown(f"**Current Time:** {current_time}")
+
+        # User Interaction Section
+        st.markdown("## ✨ Interact with the App")
+        user_name = st.text_input("What's your name?", placeholder="Enter your name...")
+
+        if user_name:
+            st.success(f"Hello, {user_name}! Enjoy exploring this creative space.")
+
+        # Fun Feature: Random Motivational Quote
+        st.markdown("## 💡 Motivation of the Moment")
+        quotes = [
+            "Believe in yourself and all that you are!",
+            "Your limitation—it’s only your imagination.",
+            "Dream it. Wish it. Do it.",
+            "Stay positive. Work hard. Make it happen.",
+            "Success is not final; failure is not fatal."
+        ]
+        import random
+        if st.button("Get a Quote"):
+            st.markdown(f"**Quote:** _{random.choice(quotes)}_")
+
+        # Image Section
+        st.markdown("## Add Some Color")
+        fun_animation = self.load_lottie_url("https://assets4.lottiefiles.com/packages/lf20_49rdyysj.json")
+        st_lottie(fun_animation, height=300, key="travel")
+
+        # Footer
+        st.markdown("""
+        ---
+        **Crafted with love and creativity.**
         """)
 
-        # Interactive Tabs for Content Sections
-        tab1, tab2, tab3 = st.tabs(["About Me", "Skills & Expertise", "Fun Facts 🎉"])
-
-        with tab1:
-            st_lottie(about_animation, height=300, key="about")
-            st.header("About Me")
-            st.write("""
-            I'm an information security enthusiast diving deep into modern systems and technologies. 
-            My work focuses on analyzing security frameworks, exploring cutting-edge research, 
-            and enhancing digital safety.
-            """)
-            # Interactive Form
-            st.subheader("Connect with Me!")
-            with st.form("contact_form"):
-                name = st.text_input("Your Name")
-                email = st.text_input("Your Email")
-                message = st.text_area("Message")
-                submitted = st.form_submit_button("Submit")
-                if submitted:
-                    st.success("Thank you for reaching out! I'll respond to your message soon.")
-
-        with tab2:
-            st_lottie(skills_animation, height=300, key="skills")
-            st.header("Skills & Expertise")
-            st.write("""
-            Here's a snapshot of my skills:
-            - **Information Security**: Threat analysis, risk assessment, and policy design.
-            - **Research & Literature Reviews**: Synthesizing complex ideas into actionable insights.
-            - **Programming & Tools**: Python, Streamlit, and more!
-            """)
-            selected_topics = st.multiselect(
-                "Explore more about my skills:",
-                ["Threat Mitigation", "Streamlit Development", "Research Analysis", "Python Programming"]
-            )
-            if selected_topics:
-                st.write("You picked these topics:")
-                for topic in selected_topics:
-                    st.markdown(f"- **{topic}**")
-
-        with tab3:
-            st_lottie(fun_animation, height=300, key="fun")
-            st.header("Fun Facts 🎉")
-            st.write("""
-            When I'm not working, I enjoy:
-            - Listening to lyrical music with rich medium and low frequencies.
-            - Watching epic shows like 'Game of Thrones' or 'Breaking Bad.'
-            - Discovering unconventional ways to tackle problems.
-            """)
-            # Interactive Slider
-            fun_level = st.slider(
-                "Rate how much fun this page is (be honest!):",
-                1, 10, value=7
-            )
-            if fun_level >= 8:
-                st.balloons()
-                st.write("Yay! I'm glad you're enjoying it. 🎈")
-            elif fun_level <= 4:
-                st.write("Let me know how I can improve!")
-
-        # Sidebar: Quick Links
-        st.sidebar.title("Connect with Me 💌")
-        st.sidebar.write("Quick links to my profiles:")
-        st.sidebar.button("Email Me")
-        st.sidebar.button("Visit LinkedIn")
-        st.sidebar.button("Check GitHub")
-
-# Instantiate and run the Home app
 if __name__ == "__main__":
     home = Home()
     home.app()
