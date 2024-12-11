@@ -23,33 +23,7 @@ class Home:
         )
 
         # Apply custom styles for dark theme
-        st.markdown(
-            """
-            <style>
-            body {
-                background-color: black;
-                color: #ffffff;
-            }
-            .stButton>button {
-                background-color: #6c63ff;
-                color: white;
-                border-radius: 12px;
-                padding: 10px 20px;
-                border: none;
-            }
-            .stButton>button:hover {
-                background-color: #4e4ac7;
-            }
-            .stTextInput>div>div>input {
-                background-color: #2e2e42;
-                color: white;
-                border: 1px solid #6c63ff;
-                border-radius: 10px;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+
 
         # Header
         st.markdown(
